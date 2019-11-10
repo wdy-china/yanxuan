@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/首页.css" />
+	<link rel="stylesheet" type="text/css" href="swiper-5.2.0/package/css/swiper.min.css" />
+	<script src="js框架/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+	<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="swiper-5.2.0/package/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="css/Crowd-funding.css"/>
+	<style>
+    html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+
+	<body style="overflow-x:hidden;">
+		<div id="j-YXComponentTop"></div>
+		<div class="j-bd">
+			<div class="m-projectList">
+				<div class="m-focus" style="display: block;">
+					<div class="focus-bd">
+						<div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="img/img-zong1.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong2.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong3.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong4.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong5.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong6.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong7.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong8.jpg"/></div>
+      <div class="swiper-slide"><img src="img/img-zong9.jpg"/></div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-pagination-white"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next swiper-button-white" style="right: 340px;"></div>
+    <div class="swiper-button-prev swiper-button-white" style="left: 340px;"></div>
+  </div>
+					</div>
+				</div>
+				<div class="m-nav">
+					<div class="u-wrap">
+						<p class="tlt">
+							<span>玩转</span><br />
+							<span>众筹</span>
+						</p>
+						<ul class="iconList">
+							<li class="icon0">
+								<img src="img/img-zong10.png"/>
+								<span>怦然心动的项目</span>
+							</li>
+							<li class="icon1">
+								<img src="img/img-zong11.png"/>
+								<span>支持产品生产</span>
+							</li>
+							<li class="icon2">
+								<img src="img/img-zong12.png"/>
+								<span>项目众筹成功</span>
+							</li>
+							<li class="icon3">
+								<img src="img/img-zong13.png"/>
+								<span>抢先体验新品</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="m-projects">
+					<div class="m-project">
+						<div class="m-productWrap">
+							<div class="m-title">
+								<div class="u-line">
+									<div class="cont">
+										<img src="img/img-zong14.png" class="icon"/>
+										<p class="name">正在众筹</p>
+									</div>
+								</div>
+							</div>
+							<ul class="m-itemList"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer"></div>
+		<div id="j-fixedTool"></div>
+	</body>
+	<script type="text/javascript" src="js/网易严选.js"></script>
+	<script type="text/javascript">
+		$(".footer").load("footer.html")
+		$("#j-YXComponentTop").load("top.html")
+		$("#j-fixedTool").load("j-fixedTool.html")
+	</script>
+	<script>
+    var swiper = new Swiper('.swiper-container', {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      loop:true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  <script type="text/javascript">
+  	$(function(){
+  		$.ajax({
+  			type:"get",
+  			url:"json/m-indexCates4.json",
+  			async:true,
+  			success:function(data){
+  				$.each(data, function(i) {
+  					console.log(data[i].name)
+  					$(`
+  						<li class="m-item ${data[i].class}">
+									<div class="m-focusItem">
+										<div class="u-pic">
+											<img src="${data[i].img}"/>
+										</div>
+										<div class="m-info">
+											<p class="u-name">${data[i].name}</p>
+											<p class="u-desc">${data[i].desc}</p>
+											<div class="m-progress">
+												<div class="m-progressBar m-progressBarSmall">
+													<div class="u-bar">
+														<div class="progress" style="width: ${data[i].progress};">
+															<span class="u-percent">
+																<span>${data[i].percent}</span><span>%</span>
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<ul class="m-detail-small">
+												<li>
+													<p class="text">
+														<span>${data[i].text1}</span>
+													</p>
+													<p class="desc">${data[i].desc1}</p>
+												</li>
+												<li>
+												<p class="text">
+														<span>${data[i].text2}</span>
+													</p>
+													<p class="desc">${data[i].desc2}</p>
+												</li>
+												<li>
+													<p class="text">
+														<span>${data[i].text3}</span>
+													</p>
+													<p class="desc">${data[i].desc3}</p>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+  					`).appendTo($(".m-itemList"))
+  				});
+  			}
+  		});
+  	})
+  </script>
+</html>

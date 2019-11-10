@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			text-decoration: none;
+		}
+		
+		.yx-cp-fixedtool {
+			position: fixed;
+			bottom: 200px;
+			z-index: 99;
+			right: 0;
+			display: none;
+		}
+		
+		.yx-cp-base {
+			line-height: 1.5;
+			font-family: "Microsoft Yahei", "微软雅黑", verdana;
+			color: #333;
+		}
+		
+		.yx-cp-base,
+		.yx-cp-base .yx-f-fz12 {
+			font-size: 12px;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolActivityEntry {
+			position: absolute;
+			top: -153px;
+			display: block;
+		}
+		
+		.yx-cp-base a {
+			color: #333;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolActivityEntry .yx-fixedtoolActivityPic {
+			width: 72px;
+		}
+		
+		.yx-cp-base img {
+			border: 0;
+			vertical-align: top;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolCustomerService,
+		.yx-cp-fixedtool .yx-fixedtoolDownload,
+		.yx-cp-fixedtool .yx-fixedtoolGoTop,
+		.yx-cp-fixedtool .yx-fixedtoolNewuser,
+		.yx-cp-fixedtool .yx-fixedtoolSubscribe {
+			display: block;
+			width: 72px;
+			height: 82px;
+			background-color: #fff;
+			color: #666;
+			text-align: center;
+			line-height: 1;
+			cursor: pointer;
+			padding-top: 14px;
+			position: relative;
+		}
+		
+		.yx-cp-base i {
+			font-style: normal;
+		}
+		
+		.icon-yxfixedtool-newuser {
+			background-position: 0 -363px !important;
+			height: 29px;
+			width: 28px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-fixedtoolNewuser:hover .icon-yxfixedtool-newuser {
+			background-position: 0 -324px !important;
+		}
+		
+		.yx-fixedtoolNewuser:hover .yx-fixedtoolText {
+			color: rgb(180, 160, 120);
+		}
+		
+		.yx-cp-icon-yxfixedtool {
+			background: url(img/fiexd.png) no-repeat;
+		}
+		
+		.yx-fixedtoolText {
+			line-height: 20px;
+			font-size: 14px;
+			margin: 8px auto 0;
+			position: relative;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolDownload {
+			height: 140px;
+			padding-top: 0;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolDownload .yx-fixTool-downloadQrcode {
+			height: 64px;
+			margin-bottom: 8px;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolDownload .yx-fixedtool-downText1 {
+			line-height: 17px;
+			color: #666;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolDownload .yx-fixedtool-downText2 {
+			line-height: 17px;
+			color: #BC3B3B;
+		}
+		
+		.icon-yxfixedtool-subscribe {
+			background-position: 0 -527px !important;
+			height: 26px;
+			width: 26px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-fixedtoolSubscribe:hover .icon-yxfixedtool-subscribe {
+			background-position: 0 -491px !important;
+		}
+		
+		.yx-fixedtoolSubscribe:hover .yx-fixedtoolText {
+			color: rgb(180, 160, 120);
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolSubscribe p.yx-fixedtoolText {
+			line-height: 20px;
+			font-size: 14px;
+			margin: 8px auto 0;
+			position: relative;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog,
+		.yx-cp-fixedtool .yx-subscribeDialog {
+			width: 400px;
+			height: 220px;
+			position: absolute;
+			right: 62px;
+			top: -68px;
+			cursor: default;
+			line-height: 20px;
+			display: none;
+			/*background: red;*/
+		}
+		
+		.yx-fixedtoolSubscribe:hover .yx-subscribeDialog {
+			display: block;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-main,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-main {
+			width: 370px;
+			height: 220px;
+			background: #FFF;
+			border: 1px solid #EAEAEA;
+			box-shadow: 0 2px 4px 0 #7f7f7f;
+			position: relative;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-head,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-head {
+			height: 70px;
+			text-align: center;
+			line-height: 70px;
+			font-size: 26px;
+			color: #FFF;
+			margin-top: -1px;
+			margin-left: -1px;
+		}
+		
+		.yx-cp-fixedtool .yx-subscribebg {
+			background: url(img/img-fiexd-hover1.png);
+		}
+		
+		.yx-cp-fixedtool .yx-subscribeDialog .icon-yxclose-close10 {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			cursor: pointer;
+		}
+		
+		.icon-yxclose-close10 {
+			background-position: 0 0;
+			height: 10px;
+			width: 10px;
+		}
+		
+		.yx-cp-base .yx-m-pop .yx-w-close,
+		.yx-cp-icon-yxclose {
+			background-image: url(img/img-fiexd-xxx.png);
+			background-repeat: no-repeat;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-desc,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-desc {
+			font-size: 14px;
+			color: #999;
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-inputWrap,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-inputWrap {
+			width: 286px;
+			height: 34px;
+			margin: 10px auto 0;
+			position: relative;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-inputWrap input,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-inputWrap input {
+			width: 206px;
+			height: 34px;
+			padding: 5px 10px;
+			font-size: 14px;
+			background: #F8F8F8;
+			border: 1px solid #DDD;
+			border-right: none;
+			float: left;
+			outline: 0;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-inputWrap .icon-yxfixedtool-clear,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-inputWrap .icon-yxfixedtool-clear {
+			display: none;
+			position: absolute;
+			top: 10px;
+			right: 90px;
+			cursor: pointer;
+		}
+		
+		.icon-yxfixedtool-clear {
+			background-position: 0 0;
+			height: 14px;
+			width: 14px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-inputWrap .yx-submit,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-inputWrap .yx-submit {
+			width: 80px;
+			height: 34px;
+			background-color: #B4A078;
+			float: left;
+			font-size: 14px;
+			color: #fff;
+			line-height: 34px;
+			cursor: pointer;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-foot,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-foot {
+			margin-top: 31px;
+			overflow: hidden;
+			line-height: 1;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-foot .yx-privilege,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-foot .yx-privilege {
+			width: 122px;
+			float: left;
+		}
+		
+		.icon-yxfixedtool-tag {
+			background-position: 0 -563px;
+			height: 14px;
+			width: 14px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .icon-yxfixedtool-rightArrow,
+		.yx-cp-fixedtool .yx-subscribeDialog .icon-yxfixedtool-rightArrow {
+			position: absolute;
+			right: -11px;
+			top: 96px;
+		}
+		
+		.icon-yxfixedtool-rightArrow {
+			background-position: 0 -402px;
+			height: 19px;
+			width: 11px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.icon-yxfixedtool-crown {
+			background-position: 0 -24px;
+			height: 12px;
+			width: 14px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.icon-yxfixedtool-sack {
+			background-position: 0 -431px;
+			height: 14px;
+			width: 14px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-cp-fixedtool .yx-downloadLinkDialog .yx-foot .yx-privilege .yx-text,
+		.yx-cp-fixedtool .yx-subscribeDialog .yx-foot .yx-privilege .yx-text {
+			font-size: 14px;
+			color: #B4A078;
+		}
+		
+		.icon-yxfixedtool-customerService {
+			background-position: 0 -128px;
+			height: 31px;
+			width: 32px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-fixedtoolCustomerService:hover .icon-yxfixedtool-customerService {
+			background-position: 0 -87px;
+		}
+		
+		.yx-fixedtoolCustomerService:hover .yx-fixedtoolText {
+			color: rgb(180, 160, 120);
+		}
+		
+		.icon-yxfixedtool-goTop {
+			background-position: 0 -299px;
+			height: 15px;
+			width: 24px;
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+			font-size: 12px;
+			word-spacing: normal;
+			letter-spacing: normal;
+		}
+		
+		.yx-cp-fixedtool .yx-fixedtoolGoTop p.yx-fixedtoolText {
+			color: #666666;
+		}
+		
+		.yx-fixedtoolGoTop:hover .icon-yxfixedtool-goTop {
+			background-position: 0 -274px;
+		}
+		
+		.yx-fixedtoolGoTop:hover .yx-fixedtoolText {
+			color: rgb(180, 160, 120) !important;
+		}
+		
+		.yx-fixedtoolGoTop {
+			display: none !important;
+		}
+		
+		.yx-fixedtoolGoTop.active {
+			display: block !important;
+		}
+	</style>
+
+	<body>
+		<div class="j-fixedTool">
+			<div class="yx-cp-base yx-cp-fixedtool j-yx-cp-fixedtool" style="display: block;">
+				<a href="javascript:;" id="j-yx-fixedToolActivity" class="yx-fixedtoolActivityEntry">
+					<img src="img/cebian.gif" class="yx-fixedtoolActivityPic" />
+				</a>
+				<a href="javascript:;" class="yx-fixedtoolNewuser">
+					<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-newuser"></i>
+					<p class="yx-fixedtoolText">新人有礼</p>
+				</a>
+				<a href="javascript:;" class="yx-fixedtoolDownload">
+					<div class="j-yx-fixTool-downloadQrcode yx-fixTool-downloadQrcode">
+						<img src="img/img-fiexd-erweima.png" style="width: 70px;height: 70px;" />
+					</div>
+					<p class="yx-fixedtool-downText1">扫码领</p>
+					<p class="yx-fixedtool-downText2">APP1000元</p>
+					<p class="yx-fixedtool-downText2">新人礼</p>
+				</a>
+				<div class="yx-fixedtoolSubscribe" style="display: block;">
+					<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-subscribe"></i>
+					<p class="yx-fixedtoolText">订阅电子刊</p>
+					<div class="yx-subscribeDialog j-yx-fixedtoolSubscribeDialog">
+						<div class="yx-main">
+							<div class="yx-head yx-subscribebg">严选生活美学</div>
+							<div class="yx-cp-icon-yxclose icon-yxclose-close10 j-yx-subscribeDialogClose" id="Xxx"></div>
+							<div class="yx-body">
+								<div class="yx-desc">订阅电子刊，第一时间获取严选最新资讯</div>
+								<div class="yx-inputWrap">
+									<input type="text" name="" class="j-yx-fixedtoolInput" placeholder="输入您的电子邮件" />
+									<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-clear j-yx-fixedtoolClear"></i>
+									<div class="j-yx-fixedtoolSubmit yx-submit">立即订阅</div>
+								</div>
+							</div>
+							<div class="yx-foot">
+								<div class="yx-privilege">
+									<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-tag"></i>
+									<span class="yx-text">专属优惠</span>
+								</div>
+								<div class="yx-privilege">
+									<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-crown"></i>
+									<span class="yx-text">尊享优先购</span>
+								</div>
+								<div class="yx-privilege">
+									<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-sack"></i>
+									<span class="yx-text">好货不错过</span>
+								</div>
+							</div>
+							<div class="yx-cp-icon-yxfixedtool icon-yxfixedtool-rightArrow"></div>
+						</div>
+					</div>
+				</div>
+				<div class="yx-fixedtoolCustomerService">
+					<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-customerService"></i>
+					<p class="yx-fixedtoolText">在线客服</p>
+				</div>
+				<div class="yx-fixedtoolGoTop">
+					<i class="yx-cp-icon-yxfixedtool icon-yxfixedtool-goTop"></i>
+					<p class="yx-fixedtoolText">回顶部</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onscroll = function() {
+			var gotop = document.getElementsByClassName("yx-fixedtoolGoTop")[0];
+			var scroll = document.documentElement.scrollTop || document.body.scrollTop;
+			if (scroll >= 1000) {
+				gotop.className = "yx-fixedtoolGoTop active"
+			} else {
+				gotop.className = "yx-fixedtoolGoTop"
+			}
+			gotop.onclick = function() {
+				window.scrollTo(0, 0)
+			}
+		}
+		var Xxx = document.getElementById("Xxx");
+		var Yyy = document.getElementsByClassName("yx-subscribeDialog")[0];
+		Xxx.onclick = function() {
+			Yyy.style.display = "none"
+		}
+	</script>
+
+</html>
